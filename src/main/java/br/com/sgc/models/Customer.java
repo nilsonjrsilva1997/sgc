@@ -1,4 +1,4 @@
-package br.com.sgc.customer.models;
+package br.com.sgc.models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,8 +16,11 @@ public class Customer implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
     private String name;
+
     private String email;
+
     private String cpfCnpj;
 
     public void setId(long id) {
