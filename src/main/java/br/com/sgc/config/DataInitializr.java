@@ -32,7 +32,6 @@ public class DataInitializr implements ApplicationListener<ContextRefreshedEvent
             createUser("Admin", "admin", encoder.encode("123456"), Const.ROLE_ADMIN);
             createUser("Cliente", "cliente", encoder.encode("123456"), Const.ROLE_CLIENT);
         }
-
     }
 
     public void createUser(String name, String email, String password, String roleName) {

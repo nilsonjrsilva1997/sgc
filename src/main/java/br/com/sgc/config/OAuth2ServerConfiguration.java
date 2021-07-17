@@ -44,6 +44,7 @@ public class OAuth2ServerConfiguration {
                     .invalidateHttpSession(true)
                     .clearAuthentication(true)
                     .and().authorizeRequests()
+                    .antMatchers("/user/register/**").permitAll()
                     .anyRequest().fullyAuthenticated()
                     .antMatchers(HttpMethod.OPTIONS, "/**").permitAll();
         }
