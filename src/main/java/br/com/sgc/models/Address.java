@@ -19,10 +19,10 @@ public class Address {
     private String district;
     private String state;
     private String number;
-    private Boolean isMain;
+    private String isMain;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "customer_id", nullable = false)
     @JsonBackReference
-    private User user;
+    private Customer customer;
 }

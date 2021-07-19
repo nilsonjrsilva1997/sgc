@@ -16,7 +16,7 @@ public class Phone {
     private String number;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "customer_id", nullable = false)
     @JsonBackReference
-    private User user;
+    private Customer customer;
 }

@@ -18,10 +18,12 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(unique=true)
     private Long id;
-    @Column(unique=true)
-    private String name;
+
     @Column(unique = true)
     private String email;
+
+    @Column(unique = true)
+    private String name;
 
     @Column
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
@@ -37,44 +39,34 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     @JsonIgnoreProperties(value = {"user"})
     @JsonManagedReference
-    private List<Phone> phones;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    @JsonIgnoreProperties(value = {"user"})
-    @JsonManagedReference
-    private List<Address> addresses;
+    private List<Customer> customer;
 
     public User() {
     }
 
-    public User(String name, String email) {
+    public User(String email) {
         super();
-        this.name = name;
         this.email = email;
     }
     public User(User user) {
         super();
-        this.name = user.getName();
         this.email = user.getEmail();
         this.password = user.getPassword();
         this.roles = user.getRoles();
         this.id = user.getId();
     }
-    public User(String name, String email, String password, List<Role> roles) {
+    public User(String email, String password, List<Role> roles) {
         super();
-        this.name = name;
         this.email = email;
         this.roles = roles;
         this.password = password;
     }
 
-    public User(String name, String email, String password, List<Role> roles, List<Phone> phoneList, List<Address> addressList) {
+    public User(String name, String email, String password, List<Role> roles) {
         super();
-        this.name = name;
         this.email = email;
+        this.name = name;
         this.roles = roles;
         this.password = password;
-        this.phones = phoneList;
-        this.addresses = addressList;
     }
 }

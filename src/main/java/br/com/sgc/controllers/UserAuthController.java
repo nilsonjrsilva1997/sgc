@@ -2,7 +2,6 @@ package br.com.sgc.controllers;
 
 import br.com.sgc.domain.Const;
 import br.com.sgc.models.User;
-import br.com.sgc.repository.RoleRepository;
 import br.com.sgc.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -21,9 +20,6 @@ public class UserAuthController {
 
     @Autowired
     private UserRepository userRepository;
-
-    @Autowired
-    private RoleRepository roleRepository;
 
     @Autowired
     PasswordEncoder passwordEncoder;

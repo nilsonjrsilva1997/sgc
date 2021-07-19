@@ -2,7 +2,7 @@ package br.com.sgc.controllers;
 
 import br.com.sgc.domain.Const;
 import br.com.sgc.models.User;
-import br.com.sgc.repository.AddressRepository;
+import br.com.sgc.repository.CustomerRepository;
 import br.com.sgc.repository.PhoneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
@@ -19,7 +19,7 @@ public class SecurityController {
     PhoneRepository phoneRepository;
 
     @Autowired
-    AddressRepository addressRepository;
+    CustomerRepository customerRepository;
 
     @RequestMapping(value = "/user-auth", method = RequestMethod.GET)
     @ResponseBody
@@ -29,9 +29,7 @@ public class SecurityController {
                 .getAuthentication()
                 .getPrincipal());
 
-        user.setPhones(phoneRepository.findAllByUserId(user.getId()));
-        user.setAddresses(addressRepository.findAllByUserId(user.getId()));
-
+        user.setCustomer(customerRepository.findAllByUserId(user.getId()));
         return user;
     }
 }

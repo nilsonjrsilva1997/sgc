@@ -3,6 +3,8 @@ package br.com.sgc.controllers;
 import br.com.sgc.models.Phone;
 import br.com.sgc.repository.PhoneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,5 +27,16 @@ public class PhoneController {
     @PostMapping("/user/register/phone")
     public List<Phone> create(@RequestBody List<Phone> phones) {
         return phoneRepository.saveAll(phones);
+    }
+
+    @PutMapping("/phone/{id}")
+    public ResponseEntity update(@PathVariable("id") long id, @RequestBody Phone phone) {
+        try {
+            Phone phoneRecord = phoneRepository.findById(id);
+            phoneRecord.setNumber(phone.getNumber());
+            return new ResponseEntity(phoneRepository.save(phoneRecord), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
     }
 }
